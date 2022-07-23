@@ -1,8 +1,8 @@
-// /* oi */
+// /* block dentro de inline */
 // isso eh um comentario
 /* isso eh outro. 
 /* comentario aninhado */
-// outro comentario de linha
+// comentario de linha
 */
 teste
 _teste
