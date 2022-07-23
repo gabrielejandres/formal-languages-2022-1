@@ -25,7 +25,7 @@ Caso queira utilizar um arquivo diferente como entrada, utilize:
   make run IN=<nome-do-arquivo>
 ```
 
-O resultado retornado pelo analisador léxico estará no arquivo *out.txt*.
+O resultado retornado pelo analisador léxico estará no arquivo *out.txt*. Cada linha do arquivo estará no formato *(TIPO DO TOKEN, LEXEMA, LINHA INICIAL, COLUNA INICIAL)*.
 
 ## 👩‍💻 Autores
 * Antônio Alves Pimentel

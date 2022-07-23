@@ -1,8 +1,8 @@
-(INLINE COMMENT, // /* oi */, 0, 0) 
+(INLINE COMMENT, // /* block dentro de inline */, 0, 0) 
 (INLINE COMMENT, // isso eh um comentario, 1, 0) 
 (BLOCK COMMENT, /* isso eh outro. 
 /* comentario aninhado */
-// outro comentario de linha
+// comentario de linha
 */, 2, 0) 
 (IDENTIFIER, teste, 6, 0) 
 (IDENTIFIER, _teste, 7, 0) 
