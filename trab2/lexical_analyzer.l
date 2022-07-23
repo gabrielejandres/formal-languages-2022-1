@@ -15,34 +15,33 @@ typedef enum _TOKEN {
     _sum = 3,
     _mult = 4,
     _equals = 5,
-    _inline_comment = 6,
-    _block_comment = 7,
-    _keyword_if = 8,
-    _keyword_else = 9,
-    _keyword_while = 10,
-    _keyword_var = 11,
-    _keyword_const = 12,
-    _keyword_return = 13,
-    _keyword_fn = 14,
-    _keyword_assignment = 15,
-    _keyword_bool = 16,
-    _keyword_int = 17,
-    _keyword_float = 18,
-    _keyword_true = 19,
-    _keyword_false = 20,
-    _keyword_open_parentheses = 21,
-    _keyword_close_parentheses = 22,
-    _keyword_open_brace = 23,
-    _keyword_close_brace = 24,
-    _keyword_semicolon = 25,
-    _keyword_colon = 26,
-    _invalid = 27
+    _keyword_if = 6,
+    _keyword_else = 7,
+    _keyword_while = 8,
+    _keyword_var = 9,
+    _keyword_const = 10,
+    _keyword_return = 11,
+    _keyword_fn = 12,
+    _keyword_assignment = 13,
+    _keyword_bool = 14,
+    _keyword_int = 15,
+    _keyword_float = 16,
+    _keyword_true = 17,
+    _keyword_false = 18,
+    _keyword_open_parentheses = 19,
+    _keyword_close_parentheses = 20,
+    _keyword_open_brace = 21,
+    _keyword_close_brace = 22,
+    _keyword_semicolon = 23,
+    _keyword_colon = 24,
+    _invalid = 25
 } TOKEN;
 
 int column = 0; // contador de colunas
 int row = 0;    // contador de linhas
 int token;      // variavel auxiliar para leitura do token
-char* tokens[] = { "IDENTIFIER", "INTEGER", "FLOAT", "SUM OPERATOR", "TIMES OPERATOR", "EQUALS OPERATOR", "INLINE COMMENT", "BLOCK COMMENT", "KEYWORD IF", "KEYWORD ELSE", "KEYWORD WHILE", "KEYWORD VAR", "KEYWORD CONST", "KEYWORD RETURN", "KEYWORD FN", "ASSIGNMENT", "KEYWORD BOOL", "KEYWORD INT", "KEYWORD FLOAT", "KEYWORD TRUE", "KEYWORD FALSE", "KEYWORD OPEN PAR", "KEYWORD CLOSE PAR", "KEYWORD OPEN BRACE", "KEYWORD CLOSE BRACE", "KEYWORD SEMICOLON", "KEYWORD COLON", "LEXICAL ERROR"};
+int nested_comments = 0; // contador para comentarios aninhados
+char* tokens[] = { "IDENTIFIER", "INTEGER", "FLOAT", "SUM OPERATOR", "TIMES OPERATOR", "EQUALS OPERATOR", "KEYWORD IF", "KEYWORD ELSE", "KEYWORD WHILE", "KEYWORD VAR", "KEYWORD CONST", "KEYWORD RETURN", "KEYWORD FN", "ASSIGNMENT", "KEYWORD BOOL", "KEYWORD INT", "KEYWORD FLOAT", "KEYWORD TRUE", "KEYWORD FALSE", "KEYWORD OPEN PAR", "KEYWORD CLOSE PAR", "KEYWORD OPEN BRACE", "KEYWORD CLOSE BRACE", "KEYWORD SEMICOLON", "KEYWORD COLON", "LEXICAL ERROR"};
 
 %}
 
@@ -51,10 +50,24 @@ DIGIT [0-9]
 INTEGER ([1-9]{DIGIT}*)|0
 FLOAT ([1-9]{DIGIT}*|0)"."({DIGIT}+)
 INLINE_CMT (\/\/[^\n]*)
-BLOCK_CMT (\/\*[^\0]*\*\/)
 ID ({LETTER}|_)({LETTER}|{DIGIT}|_)*
 
+%x BLOCK_CMT
+
 %%
+
+"/*"             { BEGIN(BLOCK_CMT); }
+<BLOCK_CMT>{
+  "/*"           { ++nested_comments; }
+  "*"+"/"        { if (nested_comments) --nested_comments;
+                   else BEGIN(INITIAL);
+                 } 
+  [^\/\*\n]+     {} 
+  "*"+           {}
+  [\/]           {} 
+  \n             { row += 1; column = 0; }
+}
+
 
 <<EOF>>         { return _eof; }
 
@@ -74,6 +87,7 @@ ID ({LETTER}|_)({LETTER}|{DIGIT}|_)*
 "+"             { return _sum; }
 "*"             { return _mult; }
 "=="            { return _equals; }
+"="             { return _keyword_assignment; }
 "("             { return _keyword_open_parentheses; }
 ")"             { return _keyword_close_parentheses; }
 "{"             { return _keyword_open_brace; }
@@ -86,9 +100,8 @@ ID ({LETTER}|_)({LETTER}|{DIGIT}|_)*
 
 {INTEGER}       { return _int; }
 {FLOAT}         { return _float; }
-{INLINE_CMT}    { return _inline_comment; }
-{BLOCK_CMT}     { return _block_comment; }
 {ID}            { return _id; }
+{INLINE_CMT}    {}
 
 .               { return _invalid; }
 
@@ -108,9 +121,6 @@ int main(int argc, char *argv[]) {
 
         // Incrementa o numero da coluna com os caracteres lidos
         column += strlen(yytext);
-
-        // Incrementa as quebras de linha do comentario de bloco
-        if (token == _block_comment) for(int i = 0; i < strlen(yytext); i++) if (yytext[i] == LINE_BREAK) row += 1;
         
         // Caso de erro lexico
         if (token == _invalid) break;

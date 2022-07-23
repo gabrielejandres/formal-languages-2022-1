@@ -1,20 +1,15 @@
-// /* block dentro de inline */
-// isso eh um comentario
-/* isso eh outro. 
-/* comentario aninhado */
-// comentario de linha
-*/
-teste
-_teste
-teste1
-13647 38384 
-8.90
-0.1
-2.145
-* + ==
-if
-else
-while
-var
-const
-123a
+/* Funcao para fazer alguma coisa */
+fn nome_de_funcao(n: int):bool {
+    /* // inline dentro de block */
+    bool _boolean = true; // isso eh um comentario inline
+    while (boolean) {
+        if (n == 3) {
+            teste = 8.5 + n; 
+            boolean = false;
+        }
+        else {
+            teste = 8.90 + n; /* a /* b */ c */
+        }
+    }
+    return _boolean; // /* block dentro de inline */
+}
