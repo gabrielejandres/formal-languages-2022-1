@@ -14,6 +14,7 @@
 O projeto foi desenvolvido utilizando a linguagem C e para a compilação recomenda-se o uso do GCC (GNU Compiler Collection). Foi utilizado também o Flex, que é um programa de computador que gera analisadores lexicais.
 
 ![Badge](https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white)
+[![Flex](https://img.shields.io/badge/Flex-2ea44f)](https://westes.github.io/flex/manual/)
 
 ## 🪙 Tokens reconhecidos
 - Identificadores (Token IDENTIFIER): uma sequência de letras, dígitos e sublinhados, começando com uma letra ou sublinhado. A linguagem diferencia maiúsculas e minúsculas.
