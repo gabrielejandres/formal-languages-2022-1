@@ -62,7 +62,7 @@ ID ({LETTER}|_)({LETTER}|{DIGIT}|_)*
   "*"+"/"        { if (nested_comments) --nested_comments;
                    else BEGIN(INITIAL);
                  } 
-  [^/*\n]+     {} 
+  [^\/\*\n]+     {} 
   "*"+           {}
   [\/]           {} 
   \n             { row += 1; column = 0; }
