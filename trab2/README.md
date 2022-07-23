@@ -58,7 +58,7 @@ Caso queira utilizar um arquivo diferente como entrada, utilize:
   make run IN=<nome-do-arquivo>
 ```
 
-O resultado retornado pelo analisador léxico estará no arquivo *out.txt*. Cada linha do arquivo estará no formato *(TIPO DO TOKEN, LEXEMA, LINHA INICIAL, COLUNA INICIAL)*, onde a contagem de linhas e coluna inicia em 0.
+O resultado retornado pelo analisador léxico estará no arquivo *out.txt*. Cada linha do arquivo estará no formato *(TIPO DO TOKEN, LEXEMA, LINHA INICIAL, COLUNA INICIAL)*, onde a contagem de linhas e colunas inicia em 0.
 
 ## 📝 Exemplo padrão
 No arquivo *in.txt*, existe um exemplo de código na linguagem LF com alguns tokens reconhecidos no arquivo *out.txt*.
