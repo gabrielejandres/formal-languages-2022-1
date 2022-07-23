@@ -25,6 +25,8 @@ Caso queira utilizar um arquivo diferente como entrada, utilize:
   make run IN=<nome-do-arquivo>
 ```
 
+O resultado retornado pelo analisador léxico estará no arquivo *out.txt*.
+
 ## 👩‍💻 Autores
 * Antônio Alves Pimentel
 * Gabriele Jandres Cavalcanti
