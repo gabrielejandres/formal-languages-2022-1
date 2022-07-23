@@ -1,0 +1,20 @@
+// /* oi */
+// isso eh um comentario
+/* isso eh outro. 
+/* comentario aninhado */
+// outro comentario de linha
+*/
+teste
+_teste
+teste1
+13647 38384 
+8.90
+0.1
+2.145
+* + ==
+if
+else
+while
+var
+const
+123a
