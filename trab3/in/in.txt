@@ -1,0 +1,15 @@
+/* Funcao para fazer alguma coisa */
+fn nome_de_funcao(n: int):bool {
+    /* // inline dentro de block */
+    _boolean = true;
+    while (_boolean) {
+        if (n == 3) {
+            teste = 8.5 + n; 
+            _boolean = false;
+        }
+        else {
+            teste = 8.90 + n; /* a /* b */ c */
+        };
+    };
+    return _boolean; // /* block dentro de inline */
+};
