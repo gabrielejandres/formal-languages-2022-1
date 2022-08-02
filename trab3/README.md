@@ -1,5 +1,5 @@
 # Linguagens Formais | Analisador sintático | 2022.1
-*Analisador sintático da linguagem LF*
+*Analisador sintático da linguagem LF.*
 
 ## Tabela de Conteúdo
 
@@ -43,7 +43,7 @@ Caso algum símbolo não reconhecido pela linguagem LF seja lido, o analisador l
 Caso aconteça algum erro sintático no arquivo de entrada, o analisador sintático imprimirá no arquivo de saída a informação de que ocorreu um erro sintático e em qual linha e coluna ele ocorreu. Da mesma forma que no erro léxico, para obter a informação da linha e coluna dos símbolos foi utilizado o recurso *yylloc*. Porém, no caso do erro sintático, observamos que a linha do erro era sempre indicada como sendo uma a mais do que era na realidade, por isso foi necessário realizar a correção da informação da linha em que o erro sintático, subtraindo um dessa informação.
 
 ### Bloco de comandos
-O bloco de comandos dentro da função, if, else e while pode aparecer em qualquer ordem. 
+Os comandos dentro do bloco de comandos dentro da função, if, else e while podem aparecer em qualquer ordem. 
 
 ## 📜 Gramática utilizada
 Com base no documento enviado junto à atividade do analisador léxico e utilizando de algumas referências encontradas na internet, criamos a gramática *G = (V, T, S, R)* para reconhecer a linguagem LF, com:
@@ -93,7 +93,7 @@ O arquivo *out/out.txt* que contém a análise sintática contém linhas com a s
     Regra: <regra generica> ===> <regra com os lexemas> | Informacoes: <informacoes das linhas e colunas dos lexemas>
 ```
 
-Por exemplo, para a linha "teste = 8.5 + n", dada por:
+Por exemplo, para a linha "teste = 8.5 + n" temos:
 ```
     Regra: assignment -> IDENTIFIER ASSIGNMENT expression ===> assignment -> teste = expression | Informacoes: 'teste' => (7, 12), '=' => (7, 18)
 ```
